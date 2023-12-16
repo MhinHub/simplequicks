@@ -46,7 +46,7 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
         >
           {icons.map((icon) => (
             <Tooltip
-              className="bg-white"
+              className="bg-white text-black"
               placement="top-start"
               content={
                 <div className="w-[26rem] aspect-square">{icon.content}</div>
@@ -64,7 +64,7 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
                 type="button"
                 onClick={() => setIsItemClicked(true)}
                 className={cn(
-                  `flex relative justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm hover:text-white focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white`,
+                  "flex relative justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm hover:text-white focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white",
                   "text-" + icon.color,
                   "hover:bg-" + icon.color
                 )}

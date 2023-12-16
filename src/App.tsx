@@ -1,4 +1,5 @@
 import SpeedDial from "./components/SpeedDial";
+import Inbox from "./components/Inbox";
 
 function App() {
   return (
@@ -9,14 +10,13 @@ function App() {
             {
               name: "Task",
               icon: "mdi:book-open-outline",
-              bgColor: "bg-red-400",
               color: "indicator-orange",
             },
             {
               name: "Inbox",
               icon: "ic:outline-question-answer",
-              bgColor: "bg-purple-500",
               color: "indicator-blue",
+              content: <Inbox />,
             },
           ]}
         />
