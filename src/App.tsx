@@ -10,12 +10,12 @@ function App() {
             {
               name: "Task",
               icon: "mdi:book-open-outline",
-              color: "indicator-orange",
+              className: "text-indicator-orange hover:bg-indicator-orange",
             },
             {
               name: "Inbox",
               icon: "ic:outline-question-answer",
-              color: "indicator-blue",
+              className: "text-indicator-blue hover:bg-indicator-blue",
               content: <Inbox />,
             },
           ]}

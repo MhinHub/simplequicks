@@ -7,9 +7,8 @@ type SpeedDialProps = {
   icons: {
     name: string;
     icon: string;
-    bgColor?: string;
     content?: React.ReactNode;
-    color: React.HTMLAttributes<HTMLDivElement>["className"] | string;
+    className: React.HTMLAttributes<HTMLDivElement>["className"] | string;
   }[];
 };
 
@@ -65,8 +64,7 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
                 onClick={() => setIsItemClicked(true)}
                 className={cn(
                   "flex relative justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm hover:text-white focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white",
-                  "text-" + icon.color,
-                  "hover:bg-" + icon.color
+                  icon.className
                 )}
               >
                 <Icon icon={icon.icon} width={25} />
