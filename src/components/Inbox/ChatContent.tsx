@@ -42,8 +42,8 @@ const ChatContent = () => {
   };
 
   useEffect(() => {
-    if (chatClient) {
-      const channel = chatClient.channel("messaging", activeChannel?.id);
+    if (chatClient && activeChannel) {
+      const channel = chatClient.channel("messaging", activeChannel.id);
       setChannel(channel);
       channel.watch();
     }

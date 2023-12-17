@@ -49,7 +49,6 @@ const MessagingChannelPreview = (props: MessagingChannelPreviewProps) => {
             {channel.data?.name}
           </span>
           <div className="flex flex-col mt-1">
-            {/* <span className="font-semibold">{item.first_name}:</span> */}
             <span className="text-sm">{latestMessage}</span>
           </div>
         </div>
