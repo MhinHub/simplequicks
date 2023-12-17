@@ -23,7 +23,7 @@ const ListItems = () => {
         filters={filters}
         sort={sort}
         options={options}
-        Preview={(props) => <MessagingChannelPreview {...props} />}
+        Preview={(props: any) => <MessagingChannelPreview {...props} />}
       />
     </div>
   );

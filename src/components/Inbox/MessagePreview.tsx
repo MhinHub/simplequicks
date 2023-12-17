@@ -8,7 +8,7 @@ import type { Channel } from "stream-chat";
 import useStore from "../../store";
 import { Avatar } from "flowbite-react";
 
-type MessagingChannelPreviewProps = ChannelPreviewUIComponentProps & {
+export type MessagingChannelPreviewProps = ChannelPreviewUIComponentProps & {
   channel: Channel;
   onClick: MouseEventHandler;
   setActiveChannel?: ChatContextValue["setActiveChannel"];
