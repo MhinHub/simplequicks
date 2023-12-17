@@ -22,12 +22,12 @@ function App() {
             },
           ]}
         />
-        <div className="text-center flex flex-col">
+        <div className="text-center flex flex-col items-center">
           <h1 className="text-white font-extrabold text-9xl">Simple Quicks</h1>
           <span className="text-xs text-white">from</span>
           <a
             href="https://simpul.tech"
-            className="text-white font-medium text-lg link link-hover"
+            className="text-white font-medium text-lg link link-hover w-fit"
             target="_blank"
           >
             Simpul Technologies
