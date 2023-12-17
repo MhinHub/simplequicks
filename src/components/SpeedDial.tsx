@@ -43,8 +43,9 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
             visible && "translate-x-0 visible"
           )}
         >
-          {icons.map((icon) => (
+          {icons.map((icon, idx) => (
             <Tooltip
+              key={idx}
               className="bg-white text-black"
               placement="top-start"
               content={
@@ -58,6 +59,7 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
                 },
               }}
               trigger="click"
+              animation="duration-300"
             >
               <button
                 type="button"

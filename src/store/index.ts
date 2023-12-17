@@ -1,6 +1,9 @@
 import { create } from "zustand";
 import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { StreamChat } from "stream-chat";
+import { createTasks } from "./../data/task";
+
+type TaskProps = ReturnType<typeof createTasks>;
 
 interface Props {
   userId: string | null;
@@ -26,6 +29,30 @@ const useStore = create<Props>()(
       }),
       {
         name: "store",
+        storage: createJSONStorage(() => sessionStorage),
+      }
+    )
+  )
+);
+
+type TaskStoreProps = {
+  taskData: TaskProps[] | null;
+  setTaskData: (taskData: TaskProps[] | undefined) => void;
+  selectedTask: string | null;
+  setSelectedTask: (selectedTask: string) => void;
+};
+
+export const useTaskStore = create<TaskStoreProps>()(
+  devtools(
+    persist(
+      (set) => ({
+        taskData: null,
+        setTaskData: (taskData: TaskProps[] | undefined) => set({ taskData }),
+        selectedTask: null,
+        setSelectedTask: (selectedTask: string) => set({ selectedTask }),
+      }),
+      {
+        name: "task store",
         storage: createJSONStorage(() => sessionStorage),
       }
     )

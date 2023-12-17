@@ -1,5 +1,6 @@
 import SpeedDial from "./components/SpeedDial";
 import Inbox from "./components/Inbox";
+import Task from "./components/Task";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
               name: "Task",
               icon: "mdi:book-open-outline",
               className: "text-indicator-orange hover:bg-indicator-orange",
+              content: <Task />,
             },
             {
               name: "Inbox",
