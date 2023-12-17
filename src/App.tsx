@@ -22,7 +22,27 @@ function App() {
             },
           ]}
         />
-        <h1 className="text-white font-bold text-7xl">Simple Quicks</h1>
+        <div className="text-center flex flex-col">
+          <h1 className="text-white font-extrabold text-9xl">Simple Quicks</h1>
+          <span className="text-xs text-white">from</span>
+          <a
+            href="https://simpul.tech"
+            className="text-white font-medium text-lg link link-hover"
+            target="_blank"
+          >
+            Simpul Technologies
+          </a>
+        </div>
+        <p className="absolute bottom-10 left-10 text-white text-sm">
+          Build with ☕️ by{" "}
+          <a
+            href="http://github.com/MhinHub"
+            className="text-white font-medium text-base link link-hover"
+            target="_blank"
+          >
+            Muhaemin Iskandar
+          </a>
+        </p>
       </section>
     </main>
   );
