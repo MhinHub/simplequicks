@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import { Tooltip } from "flowbite-react";
 import { useState, useEffect, useRef } from "react";
 import cn from "../utils/cn";
+import { AnimatePresence, motion } from "framer-motion";
 
 type SpeedDialProps = {
   icons: {
@@ -37,56 +38,65 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
   return (
     <div className="relative w-96 h-auto" ref={speedDialRef}>
       <div className="fixed flex end-6 bottom-6 group">
-        <div
-          className={cn(
-            "invisible translate-x-10 flex items-center me-4 space-x-5 w-fit transition ease-out animate-in animate-out duration-300",
-            visible && "translate-x-0 visible"
-          )}
-        >
-          {icons.map((icon, idx) => (
-            <Tooltip
-              key={idx}
-              className="bg-white text-black"
-              placement="top-start"
-              content={
-                <div className="w-[28rem] aspect-square">{icon.content}</div>
-              }
-              theme={{
-                arrow: {
-                  style: {
-                    dark: "bg-white",
-                  },
-                },
-              }}
-              trigger="click"
-              animation="duration-300"
+        <AnimatePresence>
+          {visible && (
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 40 }}
+              transition={{ delay: 0.1 }}
+              className={cn(
+                "items-center flex me-4 space-x-5 w-fit transition ease-out animate-in animate-out duration-300"
+              )}
             >
-              <button
-                type="button"
-                onClick={() => setIsItemClicked(true)}
-                className={cn(
-                  "flex relative justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm hover:text-white focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white",
-                  icon.className
-                )}
-              >
-                <Icon icon={icon.icon} width={25} />
-                <span
-                  className={cn(
-                    "absolute -top-8 font-semibold text-white",
-                    isItemClicked && "invisible"
-                  )}
+              {icons.map((icon, idx) => (
+                <Tooltip
+                  key={idx}
+                  className="bg-white text-black"
+                  placement="top-start"
+                  content={
+                    <div className="w-[28rem] aspect-square">
+                      {icon.content}
+                    </div>
+                  }
+                  theme={{
+                    arrow: {
+                      style: {
+                        dark: "bg-white",
+                      },
+                    },
+                  }}
+                  trigger="click"
+                  animation="duration-300"
                 >
-                  {icon.name}
-                </span>
-              </button>
-            </Tooltip>
-          ))}
-        </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsItemClicked(true)}
+                    className={cn(
+                      "flex relative justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm hover:text-white focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white",
+                      icon.className
+                    )}
+                  >
+                    <Icon icon={icon.icon} width={25} />
+                    <span
+                      className={cn(
+                        "absolute -top-8 font-semibold text-white",
+                        isItemClicked && "invisible"
+                      )}
+                    >
+                      {icon.name}
+                    </span>
+                  </button>
+                </Tooltip>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
         <button
           type="button"
           onClick={() => setVisible(!visible)}
           className={
-            "flex shadow items-center justify-center text-white bg-primary-blue rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800"
+            "z-40 flex active:scale-110 transition shadow items-center justify-center text-white bg-primary-blue rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800"
           }
         >
           {visible ? (

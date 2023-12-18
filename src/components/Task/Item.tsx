@@ -5,10 +5,20 @@ import { Datepicker } from "flowbite-react";
 import { createTasks } from "../../data/task";
 import { Tooltip } from "flowbite-react";
 import { useTaskStore } from "../../store";
+import { motion } from "framer-motion";
 
-export type ItemProps = ReturnType<typeof createTasks>;
+export type ItemProps = ReturnType<typeof createTasks> & {
+  idx?: number;
+};
 
-const Item = ({ userId, title, date, description, status }: ItemProps) => {
+const Item = ({
+  userId,
+  title,
+  date,
+  description,
+  status,
+  idx = 0,
+}: ItemProps) => {
   const [checked, setChecked] = useState(status);
   const [collapsed, setCollapsed] = useState(false);
 
@@ -18,7 +28,12 @@ const Item = ({ userId, title, date, description, status }: ItemProps) => {
   const { deleteTask } = useTaskStore();
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 20 }}
+      transition={{ delay: idx * 0.1 }}
+    >
       <div className="collapse border-b-2 overflow-visible rounded-lg">
         <input
           type="radio"
@@ -116,7 +131,7 @@ const Item = ({ userId, title, date, description, status }: ItemProps) => {
           </div>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 

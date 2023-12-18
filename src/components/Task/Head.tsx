@@ -14,7 +14,7 @@ const Head = () => {
   };
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center sticky top-0 right-0 shadow z-40 bg-white py-2">
       <Select onChange={(e) => setSelectedTask(e.target.value)}>
         <option>My Tasks</option>
         <option>Personal Errands</option>
