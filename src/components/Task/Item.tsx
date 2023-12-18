@@ -9,6 +9,7 @@ type ItemProps = Omit<ReturnType<typeof createTasks>, "userId">;
 const Item = ({ title, date, description, status }: ItemProps) => {
   const [checked, setChecked] = useState(status);
   const [collapsed, setCollapsed] = useState(false);
+  const [dueDate, setDueDate] = useState<Date>(date);
 
   return (
     <>
@@ -40,11 +41,11 @@ const Item = ({ title, date, description, status }: ItemProps) => {
           <div className="flex gap-3 text-xs items-center">
             <span className={cn("text-indicator-red", checked && "hidden")}>
               {`${Math.floor(
-                (new Date(date).getTime() - new Date().getTime()) /
+                (new Date(dueDate).getTime() - new Date().getTime()) /
                   (1000 * 3600 * 24)
               )} Days Left`}
             </span>
-            <span>{new Date().toLocaleDateString()}</span>
+            <span>{new Date(dueDate).toLocaleDateString("id-ID")}</span>
             <Icon
               icon="mdi:chevron-down"
               className={cn(
@@ -70,6 +71,8 @@ const Item = ({ title, date, description, status }: ItemProps) => {
               minDate={new Date()}
               icon={undefined}
               defaultDate={new Date(date)}
+              pattern="dd/MM/yyyy"
+              onSelectedDateChanged={(e) => setDueDate(e)}
             />
             <Icon
               icon="mdi:pencil-outline"
