@@ -51,11 +51,12 @@ const Item = ({
               className="checkbox text-4xl  [--chkbg:theme(colors.blue.500)]"
             />
             <textarea
+              onClick={() => setCollapsed(true)}
               disabled={checked}
               wrap="soft"
               placeholder="Task Title"
               className={cn(
-                "text-sm font-medium transition border-0 p-2 rounded-lg overflow-hidden [resize:none] [inline-size:min-content]  [line-height:min-content]",
+                "text-sm cursor-pointer font-medium transition border-0 p-2 rounded-lg overflow-hidden [resize:none] [inline-size:min-content]  [line-height:min-content]",
                 checked && "line-through decoration-primary-dark"
               )}
               value={taskTitle}
