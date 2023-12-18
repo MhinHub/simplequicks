@@ -85,8 +85,8 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
                       setItem(icon.name);
                     }}
                     className={cn(
-                      "flex relative transition duration-100 ease-in active:scale-125 justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm focus:ring-4 focus:ring-gray-300 focus:outline-none bg-white",
-                      `drop-shadow-md text-${icon.className}`,
+                      "flex relative transition duration-100 ease-in active:scale-125 justify-center items-center w-[52px] h-[52px] rounded-full shadow-sm focus:ring-4 focus:ring-gray-300 focus:outline-none bg-indicator-orange bg-indicator-blue",
+                      `drop-shadow-md text-${icon.className} bg-white`,
                       isItemClicked &&
                         item === icon.name &&
                         `bg-${icon.className} text-white scale-110`
