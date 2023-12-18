@@ -11,7 +11,7 @@ const ListItem = () => {
   }, [selectedTask]);
 
   return (
-    <div className="flex flex-col gap-2 my-3">
+    <div className="flex flex-col gap-2 my-3 w-full">
       {data?.map((item, idx) => (
         <Item key={idx} {...item} />
       ))}

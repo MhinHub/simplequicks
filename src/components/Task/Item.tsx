@@ -9,11 +9,12 @@ type ItemProps = Omit<ReturnType<typeof createTasks>, "userId">;
 const Item = ({ title, date, description, status }: ItemProps) => {
   const [checked, setChecked] = useState(status);
   const [collapsed, setCollapsed] = useState(false);
+
   const [dueDate, setDueDate] = useState<Date>(date);
 
   return (
     <>
-      <div className="collapse hover:bg-sticker-waterwing overflow-visible rounded-lg">
+      <div className="collapse border-b-2 overflow-visible rounded-lg">
         <input
           type="radio"
           name="task-accordion"
@@ -29,14 +30,15 @@ const Item = ({ title, date, description, status }: ItemProps) => {
               onChange={() => setChecked(!checked)}
               className="checkbox text-4xl  [--chkbg:theme(colors.blue.500)]"
             />
-            <p
+            <textarea
+              disabled={checked}
+              wrap="soft"
               className={cn(
-                "text-base font-medium transition",
+                "text-sm font-medium transition border-0 p-2 rounded-lg overflow-hidden [resize:none] [inline-size:min-content]  [line-height:min-content]",
                 checked && "line-through decoration-primary-dark"
               )}
-            >
-              {title}
-            </p>
+              defaultValue={title}
+            />
           </div>
           <div className="flex gap-3 text-xs items-center">
             <span className={cn("text-indicator-red", checked && "hidden")}>
@@ -67,9 +69,8 @@ const Item = ({ title, date, description, status }: ItemProps) => {
               className="text-primary-blue text-xl w-11 place-self-center"
             />
             <Datepicker
-              className="w-36 z-50"
+              className="w-48 z-50"
               minDate={new Date()}
-              icon={undefined}
               defaultDate={new Date(date)}
               pattern="dd/MM/yyyy"
               onSelectedDateChanged={(e) => setDueDate(e)}
@@ -78,7 +79,11 @@ const Item = ({ title, date, description, status }: ItemProps) => {
               icon="mdi:pencil-outline"
               className="text-primary-blue text-xl w-11 place-self-center"
             />
-            <p className="text-sm">{description}</p>
+            <textarea
+              rows={5}
+              className="text-sm border-0 rounded-lg [line-height:min-content]"
+              defaultValue={description}
+            />
           </div>
         </div>
       </div>

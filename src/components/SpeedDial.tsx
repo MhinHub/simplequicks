@@ -49,7 +49,7 @@ const SpeedDial = ({ icons }: SpeedDialProps) => {
               className="bg-white text-black"
               placement="top-start"
               content={
-                <div className="w-[26rem] aspect-square">{icon.content}</div>
+                <div className="w-[28rem] aspect-square">{icon.content}</div>
               }
               theme={{
                 arrow: {
