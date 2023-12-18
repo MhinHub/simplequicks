@@ -3,14 +3,19 @@ import cn from "../../utils/cn";
 import { Icon } from "@iconify/react";
 import { Datepicker } from "flowbite-react";
 import { createTasks } from "../../data/task";
+import { Tooltip } from "flowbite-react";
+import { useTaskStore } from "../../store";
 
-type ItemProps = Omit<ReturnType<typeof createTasks>, "userId">;
+type ItemProps = ReturnType<typeof createTasks>;
 
-const Item = ({ title, date, description, status }: ItemProps) => {
+const Item = ({ userId, title, date, description, status }: ItemProps) => {
   const [checked, setChecked] = useState(status);
   const [collapsed, setCollapsed] = useState(false);
 
   const [dueDate, setDueDate] = useState<Date>(date);
+  const [taskTitle, setTaskTitle] = useState<string>(title);
+
+  const { deleteTask } = useTaskStore();
 
   return (
     <>
@@ -37,11 +42,12 @@ const Item = ({ title, date, description, status }: ItemProps) => {
                 "text-sm font-medium transition border-0 p-2 rounded-lg overflow-hidden [resize:none] [inline-size:min-content]  [line-height:min-content]",
                 checked && "line-through decoration-primary-dark"
               )}
-              defaultValue={title}
+              value={taskTitle}
+              onChange={(e) => setTaskTitle(e.target.value)}
             />
           </div>
           <div className="flex gap-3 text-xs items-center">
-            <span className={cn("text-indicator-red", checked && "hidden")}>
+            <span className={cn("text-indicator-orange", checked && "hidden")}>
               {`${Math.floor(
                 (new Date(dueDate).getTime() - new Date().getTime()) /
                   (1000 * 3600 * 24)
@@ -56,10 +62,31 @@ const Item = ({ title, date, description, status }: ItemProps) => {
               )}
               onClick={() => setCollapsed(!collapsed)}
             />
-            <Icon
-              icon="tabler:dots"
-              className="btn btn-ghost text-primary-dark text-2xl p-0 h-fit min-h-0"
-            />
+            <Tooltip
+              content={
+                <div className="flex flex-col gap-3">
+                  <span>Are You Sure?</span>
+                  <button
+                    type="button"
+                    className="rounded-md bg-indicator-red p-1 text-white"
+                    onClick={() => deleteTask(userId)}
+                  >
+                    Yes
+                  </button>
+                </div>
+              }
+              trigger="click"
+              theme={{
+                style: { dark: "bg-primary-light" },
+                arrow: { style: { dark: "bg-primary-light" } },
+              }}
+              placement="bottom-start"
+            >
+              <Icon
+                icon="mdi:trash-outline"
+                className="btn btn-ghost text-indicator-red  text-2xl p-0 h-fit min-h-0"
+              />
+            </Tooltip>
           </div>
         </div>
         <div className="collapse-content mx-2">

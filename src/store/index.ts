@@ -40,6 +40,7 @@ type TaskStoreProps = {
   setTaskData: (taskData: TaskProps[] | undefined) => void;
   selectedTask: string | null;
   setSelectedTask: (selectedTask: string) => void;
+  deleteTask: (id: string) => void;
 };
 
 export const useTaskStore = create<TaskStoreProps>()(
@@ -50,6 +51,10 @@ export const useTaskStore = create<TaskStoreProps>()(
         setTaskData: (taskData: TaskProps[] | undefined) => set({ taskData }),
         selectedTask: null,
         setSelectedTask: (selectedTask: string) => set({ selectedTask }),
+        deleteTask: (id: string) =>
+          set((state) => ({
+            taskData: state.taskData?.filter((task) => task.userId !== id),
+          })),
       }),
       {
         name: "task store",
