@@ -23,12 +23,6 @@ const MessagingChannelPreview = (props: MessagingChannelPreviewProps) => {
     ({ user }) => user?.id !== client.userID
   );
 
-  console.log("isLastMessageRead", channel.state.isUpToDate);
-
-  console.log("channel", channel.data);
-
-  console.log("members preview", members);
-
   return (
     <>
       <div

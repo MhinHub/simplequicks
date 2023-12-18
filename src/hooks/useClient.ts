@@ -26,7 +26,7 @@ export const useClient = (user: User): StreamChat | undefined => {
       connectionPromise
         .then(() => client.disconnectUser())
         .then(() => {
-          console.log("connection closed");
+          console.info("connection closed");
         });
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- should re-run only if user.id changes

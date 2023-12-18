@@ -25,13 +25,10 @@ const ChatContent = () => {
     (member) => member.user?.id !== client?.user?.id
   );
 
-  console.log("members", members);
-
   const updateChannel = async () => {
     const name = members
       .map((member) => member && member.user?.name)
       .join(", ");
-    console.log("name", name);
 
     if (activeChannel && name && activeChannel?.data?.name !== name) {
       await activeChannel?.update(
