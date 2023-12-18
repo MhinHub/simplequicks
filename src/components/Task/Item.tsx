@@ -6,7 +6,7 @@ import { createTasks } from "../../data/task";
 import { Tooltip } from "flowbite-react";
 import { useTaskStore } from "../../store";
 
-type ItemProps = ReturnType<typeof createTasks>;
+export type ItemProps = ReturnType<typeof createTasks>;
 
 const Item = ({ userId, title, date, description, status }: ItemProps) => {
   const [checked, setChecked] = useState(status);
@@ -38,6 +38,7 @@ const Item = ({ userId, title, date, description, status }: ItemProps) => {
             <textarea
               disabled={checked}
               wrap="soft"
+              placeholder="Task Title"
               className={cn(
                 "text-sm font-medium transition border-0 p-2 rounded-lg overflow-hidden [resize:none] [inline-size:min-content]  [line-height:min-content]",
                 checked && "line-through decoration-primary-dark"
@@ -108,6 +109,7 @@ const Item = ({ userId, title, date, description, status }: ItemProps) => {
             />
             <textarea
               rows={5}
+              placeholder="Description"
               className="text-sm border-0 rounded-lg [line-height:min-content]"
               defaultValue={description}
             />

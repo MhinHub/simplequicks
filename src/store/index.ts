@@ -3,7 +3,7 @@ import { devtools, persist, createJSONStorage } from "zustand/middleware";
 import { StreamChat } from "stream-chat";
 import { createTasks } from "./../data/task";
 
-type TaskProps = ReturnType<typeof createTasks>;
+export type TaskProps = ReturnType<typeof createTasks>;
 
 interface Props {
   userId: string | null;
@@ -40,6 +40,7 @@ type TaskStoreProps = {
   setTaskData: (taskData: TaskProps[] | undefined) => void;
   selectedTask: string | null;
   setSelectedTask: (selectedTask: string) => void;
+  addTask: (task: TaskProps) => void;
   deleteTask: (id: string) => void;
 };
 
@@ -51,6 +52,10 @@ export const useTaskStore = create<TaskStoreProps>()(
         setTaskData: (taskData: TaskProps[] | undefined) => set({ taskData }),
         selectedTask: null,
         setSelectedTask: (selectedTask: string) => set({ selectedTask }),
+        addTask: (task: TaskProps) =>
+          set((state) => ({
+            taskData: [task, ...(state.taskData ?? [])],
+          })),
         deleteTask: (id: string) =>
           set((state) => ({
             taskData: state.taskData?.filter((task) => task.userId !== id),
