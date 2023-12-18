@@ -11,13 +11,13 @@ function App() {
             {
               name: "Task",
               icon: "mdi:book-open-outline",
-              className: "text-indicator-orange hover:bg-indicator-orange",
+              className: "indicator-orange",
               content: <Task />,
             },
             {
               name: "Inbox",
               icon: "ic:outline-question-answer",
-              className: "text-indicator-blue hover:bg-indicator-blue",
+              className: "indicator-blue",
               content: <Inbox />,
             },
           ]}
