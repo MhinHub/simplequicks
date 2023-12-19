@@ -9,13 +9,13 @@ const ListItem = () => {
 
   useEffect(() => {
     setTaskData(tasks());
-  }, [selectedTask]);
+  }, [selectedTask, setTaskData]);
 
   return (
     <div className="flex flex-col gap-2 my-3 w-full">
       <AnimatePresence>
         {data?.map((item, idx) => (
-          <Item key={idx} {...item} idx={idx} />
+          <Item key={item.userId} {...item} idx={idx} />
         ))}
       </AnimatePresence>
     </div>
