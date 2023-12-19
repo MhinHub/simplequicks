@@ -31,10 +31,7 @@ const ChatContent = () => {
       .join(", ");
 
     if (activeChannel && name && activeChannel?.data?.name !== name) {
-      await activeChannel?.update(
-        { name },
-        { text: `Channel name changed to ${name}` }
-      );
+      await activeChannel?.update({ name });
     }
   };
 

@@ -30,14 +30,23 @@ const MessagingChannelPreview = (props: MessagingChannelPreviewProps) => {
           setActiveChannel?.(channel);
           setContent("chat-content");
         }}
-        className="flex w-full border-b pb-5 pt-2 px-2 rounded-lg hover:bg-sticker-blue cursor-pointer"
+        className="flex justify-between w-full border-b pb-5 pt-2 px-2 rounded-lg hover:bg-sticker-blue cursor-pointer"
       >
-        <Avatar
-          size="sm"
-          className="me-2 w-12"
-          rounded
-          img={channel.data?.image || members[0]?.user?.image}
-        />
+        <Avatar.Group className="mr-2 items-center justify-center">
+          <Avatar
+            size="sm"
+            className="w-8"
+            rounded
+            stacked
+            img={members && members[0]?.user?.image}
+          />
+          {members.length > 1 && (
+            <Avatar.Counter
+              total={members.length - 1}
+              className="bg-primary-blue w-8 h-8"
+            />
+          )}
+        </Avatar.Group>
         <div className="flex flex-col">
           <span className="font-bold text-primary-blue">
             {channel.data?.name}
@@ -47,7 +56,14 @@ const MessagingChannelPreview = (props: MessagingChannelPreviewProps) => {
           </div>
         </div>
         <span className="self-baseline ml-auto text-sm">
-          {new Date(channel.data?.last_message_at as Date).toLocaleString()}
+          {new Date(channel.data?.last_message_at as Date).toLocaleString(
+            "id-ID",
+            {
+              dateStyle: "short",
+              hour12: true,
+              timeStyle: "short",
+            }
+          )}
         </span>
       </div>
     </>
